@@ -7,16 +7,6 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 
-/**
- * @dev {BEP20} token, including:
- *
- *  - Preminted initial supply
- *  - Ability for holders to burn (destroy) their tokens
- *  - No access control mechanism (for minting/pausing) and hence no governance
- *
- *
- * _Available since v3.4._
- */
 contract DigiBirr_v1 is DigiBirr {  
     function checkWhitelistRole(address _checker) external view returns (bool) {
         bool authAccount = hasRole(WHITELISTER_ROLE, _checker);
