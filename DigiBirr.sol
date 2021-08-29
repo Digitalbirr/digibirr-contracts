@@ -6,16 +6,6 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 
-/**
- * @dev {BEP20} token, including:
- *
- *  - Preminted initial supply
- *  - Ability for holders to burn (destroy) their tokens
- *  - No access control mechanism (for minting/pausing) and hence no governance
- *
- *
- * _Available since v3.4._
- */
 contract DigiBirr is Initializable, BEP20Upgradeable, UUPSUpgradeable, AccessControlUpgradeable {
 
     bytes32 public constant WHITELISTER_ROLE = keccak256("WHITELISTER_ROLE");
@@ -28,11 +18,7 @@ contract DigiBirr is Initializable, BEP20Upgradeable, UUPSUpgradeable, AccessCon
         address _owner = _msgSender();
         __DigiBirr_init(_name, _symbol, _decimals, _initialSupply, _owner);
     }
-    /**
-     * @dev Mints `initialSupply` amount of token and transfers them to `owner`.
-     *
-     * See {BEP20-constructor}.
-     */
+    
     function __DigiBirr_init(
         string memory _name,
         string memory _symbol,
@@ -48,10 +34,8 @@ contract DigiBirr is Initializable, BEP20Upgradeable, UUPSUpgradeable, AccessCon
         _setupRole(WHITELISTER_ROLE, _owner);   
         _initialSupply = _initialSupply * (10 ** _decimals);
         _mint(_owner, _initialSupply);
-    }
+    }   
     
-    
-
     function _authorizeUpgrade(address) internal override onlyRole(DEFAULT_ADMIN_ROLE) {}
 
     uint256[50] private __gap;
