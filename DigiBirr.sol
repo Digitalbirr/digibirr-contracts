@@ -8,7 +8,6 @@ import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol"
 
 contract DigiBirr is Initializable, BEP20Upgradeable, UUPSUpgradeable, AccessControlUpgradeable {
 
-    bytes32 public constant WHITELISTER_ROLE = keccak256("WHITELISTER_ROLE");
     function initialize(
         string memory _name,
         string memory _symbol,
@@ -30,8 +29,7 @@ contract DigiBirr is Initializable, BEP20Upgradeable, UUPSUpgradeable, AccessCon
         __UUPSUpgradeable_init();
         __AccessControl_init();
         __BEP20_init(_name, _symbol);        
-        _setupRole(DEFAULT_ADMIN_ROLE, _owner);
-        _setupRole(WHITELISTER_ROLE, _owner);   
+        _setupRole(DEFAULT_ADMIN_ROLE, _owner);  
         _initialSupply = _initialSupply * (10 ** _decimals);
         _mint(_owner, _initialSupply);
     }   
